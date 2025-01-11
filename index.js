@@ -34,9 +34,12 @@ const allMyFriends = [
 ];
 
 const findFriendsByName = (allFriends, friendName) => {
-  return allFriends
-    .filter(({ friends }) => friends.includes(friendName))
-    .map((friend) => friend.name);
+  return allFriends.reduce((acc, { name, friends }) => {
+    if (friends.includes(friendName)) {
+      acc.push(name);
+    }
+    return acc;
+  }, []);
 };
 console.log("<!-- Друзі з Максом-->");
 console.log(findFriendsByName(allMyFriends, "Max"));
